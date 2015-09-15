@@ -3,7 +3,7 @@
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
-Yield values without es6 generator syntax. `yields` returns an iterator that iterates over the given functions and yielding the results of executing the functions.
+Yield values without es6 generator syntax. `yields` returns an iterator that iterates over the given functions, yielding the results of executing the functions. It is designed to parallel generators as closely as possible.
 
 ## Installation
 
@@ -14,11 +14,11 @@ Yield values without es6 generator syntax. `yields` returns an iterator that ite
 ```js
 var yields = require('yields')
 
-var it = yields(function() {
+var it = yields(function () {
   return 1
-}, function() {
+}).yields(function () {
   return 2
-}, function() {
+}).yields(function () {
   return 3
 })()
 
@@ -28,9 +28,90 @@ var it = yields(function() {
 // 3
 var ret
 while (!(ret = it.next()).done) {
-console.log(ret.value)
+  console.log(ret.value)
 }
 
+```
+
+## Error handling
+
+### simple
+
+with yields:
+```js
+var it = yields(function () {
+  return 1
+}, function (err) {
+  console.log('caught error')
+})
+```
+
+with generators:
+```js
+function *() {
+  try {
+    yield 1
+  } catch (err) {
+    console.log('caught error')
+  }
+}
+```
+
+### catch multiple
+
+with yields:
+```js
+var it = yields(function () {
+  return 1
+}).yields(function () {
+  return 2
+}, function (err) {
+  console.log('caught error 2')
+})
+```
+
+with generators:
+```js
+function *() {
+  try {
+    yield 1
+    yield 2
+  } catch (err) {
+    console.log('caught error 2')
+  }
+}
+```
+
+## nested
+
+with yields:
+```js
+var it = yields(function () {
+  return 1
+}, function (err) {
+  console.log('caught error')
+}).yields(function () {
+  return 2
+}, function (err) {
+  console.log('caught error 2')
+})
+```
+
+with generators:
+```js
+function *() {
+  try {
+    try {
+      yield 1
+    } catch (err) {
+      console.log('caught error 2')
+    }
+    yield 2
+  } catch (err) {
+    console.log('caught error 2')
+  }
+
+}
 ```
 
 ## License
