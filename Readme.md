@@ -1,7 +1,7 @@
 
 # yields
 
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+[![Codeship Status for weo-edu/yields](https://img.shields.io/codeship/45395b00-3d8c-0133-46c6-42a3d0552738/master.svg)](https://codeship.com/projects/102525)  [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
 Yield values without es6 generator syntax. `yields` returns an iterator that iterates over the given functions, yielding the results of executing the functions. It is designed to parallel generators as closely as possible.
 
