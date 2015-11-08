@@ -7,7 +7,7 @@ Yield values without es6 generator syntax. `yields` returns an iterator that ite
 
 ## Installation
 
-    $ npm install @weo-edu/yields
+    $ npm install yields
 
 ## Example
 

@@ -1,5 +1,5 @@
 {
-  "name": "@weo-edu/yields",
+  "name": "yields",
   "description": "Yield values without es6 generator syntax.",
   "repository": "git://github.com/weo-edu/yields.git",
   "version": "0.1.2",
